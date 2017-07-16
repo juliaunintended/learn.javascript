@@ -127,3 +127,69 @@ alert(filtered);
 Посмотрите также анимацию алгоритма.
 Реализуйте «Решето Эратосфена» в JavaScript, используя массив.  
 Найдите все простые числа до 100 и выведите их сумму.*/
+
+var a = [];
+
+for (var i = 2; i < 100; i++) {
+    a[i] = true;
+}
+
+var p = 2;
+
+do {
+    for (i = 2 * p; i < 100; i += p) {
+        a[i] = false;
+    }
+
+    for (i = p + 1; i < 100; i++) {
+        if (a[i]) break;
+    }
+
+    p = i;
+} while (p * p < 100);
+
+var sum = 0;
+for (i = 0; i < a.length; i++) {
+    if (a[i]) {
+        sum += i;
+    }
+}
+
+alert(sum);
+
+/*На входе массив чисел, например: arr = [1, -2, 3, 4, -9, 6].
+Задача – найти непрерывный подмассив arr, сумма элементов которого максимальна.
+Ваша функция должна возвращать только эту сумму.
+Например:                 
+getMaxSubSum([-1, 2, 3, -9]) = 5 (сумма выделенных)
+getMaxSubSum([2, -1, 2, 3, -9]) = 6
+getMaxSubSum([-1, 2, 3, -9, 11]) = 11
+getMaxSubSum([-2, -1, 1, 2]) = 3
+getMaxSubSum([100, -9, 2, -3, 5]) = 100
+getMaxSubSum([1, 2, 3]) = 6 (неотрицательные - берем всех)
+
+Если все элементы отрицательные, то не берём ни одного элемента и считаем сумму равной нулю:
+getMaxSubSum([-1, -2, -3]) = 0
+
+Постарайтесь придумать решение, которое работает за O(n2), а лучше за O(n) операций.*/
+
+function getMaxSubSum(arr) {
+    var maxSum = 0;
+
+    for (var i = 0; i < arr.length; i++) {
+        var sum = 0;
+        for (var b = i; b < arr.length; b++) {
+            sum += arr[b];
+            maxSum = Math.max(maxSum, sum);
+        }
+    }
+
+    return maxSum;
+}
+
+getMaxSubSum([-1, 2, 3, -9]) = 5;
+getMaxSubSum([2, -1, 2, 3, -9]);
+getMaxSubSum([-1, 2, 3, -9, 11]);
+getMaxSubSum([-2, -1, 1, 2]);
+getMaxSubSum([100, -9, 2, -3, 5]);
+getMaxSubSum([1, 2, 3]);
