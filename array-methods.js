@@ -178,3 +178,157 @@ var people = [ vasya , masha , vovochka ];
 alert(people[0].age) // 6
 
 Выведите список имён в массиве после сортировки.*/
+function compAge(a, b) {
+    return a.age - b.age;
+}
+
+var vasya = {
+    name: "Вася",
+    age: 23
+};
+var masha = {
+    name: "Маша",
+    age: 18
+};
+var vovochka = {
+    name: "Вовочка",
+    age: 6
+};
+
+var people = [vasya, masha, vovochka];
+people.sort(compAge);
+
+for (var i = 0; i < people.length; i++) {
+    alert(people[i].name)
+}
+
+/*Задачи:
+
+    1. Напишите функцию printList(list), которая выводит элементы списка по очереди, при помощи цикла.
+    2. Напишите функцию printList(list) при помощи рекурсии.
+    3. Напишите функцию printReverseList(list), которая выводит элементы списка в обратном порядке, при помощи рекурсии. 
+    Для списка выше она должна выводить 4,3,2,1
+    4. Сделайте вариант printReverseList(list), использующий не рекурсию, а цикл.
+
+Как лучше – с рекурсией или без?*/
+
+1 //
+var list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printList(list) {
+    var a = list;
+    while (a) {
+        alert(a.value);
+        a = a.next;
+    }
+}
+printList(list);
+
+2 //
+var list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printList(list) {
+    alert(list.value);
+    if (list.next) {
+        printList(list.next);
+    }
+}
+printList(list);
+
+3 //
+var list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printReverseList(list) {
+    if (list.next) {
+        printReverseList(list.next);
+    }
+    alert(list.value);
+}
+printReverseList(list);
+
+4 //
+var list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printReverseList(list) {
+    var arr = [];
+    var a = list;
+    while (a) {
+        arr.push(a.value);
+        a = a.next;
+    }
+    for (var i = arr.length - 1; i >= 0; i--) {
+        alert(arr[i]);
+    }
+}
+printReverseList(list);
+
+/*Напишите функцию aclean(arr), которая возвращает массив слов, очищенный от анаграмм.
+Например:
+
+var arr = ["воз", "киборг", "корсет", "ЗОВ", "гробик", "костер", "сектор"];
+alert( aclean(arr) ); // "воз,киборг,корсет" или "ЗОВ,гробик,сектор"
+
+Из каждой группы анаграмм должно остаться только одно слово, не важно какое.*/
+
+
+/*Пусть arr – массив строк.
+Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr.
+Например:
+
+function unique(arr) {
+    //ваш код
+}
+
+var strings = ["кришна", "кришна", "харе", "харе",
+  "харе", "харе", "кришна", "кришна", "8-()"
+];
+
+alert( unique(strings) ); // кришна, харе, 8-()*/
